@@ -1,0 +1,18 @@
+{
+  "name": "selftbotbyinter",
+  "version": "1.0.0",
+  "description": "selftbot FANTOME",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "interpol",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.3.0",
+    "moment": "^2.20.1",
+    "randomcolor": "^0.5.3",
+    "util": "^0.10.3",
+    "winston": "^2.4.0"
+  }
+}
