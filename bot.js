@@ -233,4 +233,4 @@ msg.channel.send("Error, user not found.")
 }
     
 });
-bot.login(config.token);
+bot.login(process.env.TOKEN);
