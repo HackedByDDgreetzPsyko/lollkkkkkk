@@ -1,5 +1,5 @@
 {
     "token": "process.env.TOKEN",
-    "prefix": "$",
+    "prefix": "5",
     "logchannel": "418400873249505281"
 }
