@@ -72,6 +72,31 @@ bot.on('message', msg => {
         }
         msg.channel.send('**Beep**');
         msg.channel.sendFile(userg.avatarURL.split('?')[0]);
+    } else if (msg.content.startsWith("5y")) {
+        if (msg.content.replace("5y ", "") === "") {
+            msg.reply("`result <Query>`");
+        }
+        request(
+            "https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=" +
+            msg.content.replace("5y ", "") +
+            "&type=video&videoDefinition=high&key=AIzaSyB-IuppTwP4EnCr_O6tN-4Unmz2eQWfakI",
+            (error, response, body) => {
+                if (error || response.statusCode !== 200) {
+                    msg.reply("L'API de Google ne fonctionne pas lol.");
+                } else {
+                    body = JSON.parse(body);
+                    if (body.pageInfo.totalResults === 0) {
+                        msg.reply("Sans résultats lol."); // nice french
+                    } else {
+                        msg.reply(
+                            "La première vidéo: http://youtu.be/" + body.items[0].id.videoId
+                        );
+                    }
+                }
+            }
+        );
+
+
     }
 
     if (msg.content === prefix + "stats") {
@@ -93,7 +118,7 @@ bot.on('message', msg => {
                 disableEveryone: true
             }
         );
-    }
+    
 
     //THIS WILL RESET THE BOT IF YOU RUN A FOREVER JS PROCESS. (LIKE PM2 OR NODEMON)
     if (msg.content.toLowerCase() == prefix + 'r' || msg.content.toLowerCase() == prefix + 'reload') {
@@ -142,33 +167,6 @@ bot.on('message', msg => {
                 }
             );
         }
-    }
-
-   if (msg.content.startsWith("5y")) {
-        if (msg.content.replace("5y ", "") === "") {
-            msg.reply("`result <Query>`");
-        }
-        request(
-            "https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=" +
-            msg.content.replace("5y ", "") +
-            "&type=video&videoDefinition=high&key=AIzaSyB-IuppTwP4EnCr_O6tN-4Unmz2eQWfakI",
-            (error, response, body) => {
-                if (error || response.statusCode !== 200) {
-                    msg.reply("L'API de Google ne fonctionne pas lol.");
-                } else {
-                    body = JSON.parse(body);
-                    if (body.pageInfo.totalResults === 0) {
-                        msg.reply("Sans résultats lol."); // nice french
-                    } else {
-                        msg.reply(
-                            "La première vidéo: http://youtu.be/" + body.items[0].id.videoId
-                        );
-                    }
-                }
-            }
-        );
-
-
     }
 
     if (msg.content.toLowerCase() === prefix + "serverinfo") {
