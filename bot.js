@@ -144,7 +144,7 @@ bot.on('message', msg => {
         }
     }
 
-    else if (msg.content.startsWith("5y")) {
+   if (msg.content.startsWith("5y")) {
         if (msg.content.replace("5y ", "") === "") {
             msg.reply("`result <Query>`");
         }
